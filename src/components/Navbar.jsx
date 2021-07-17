@@ -1,5 +1,6 @@
 import "./../App.scss";
 import scssNavbar from "./../css_modules/Navbar.module.scss";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -9,11 +10,10 @@ const Navbar = () => {
         <div className={`container ${scssNavbar.grid__container}`}>
           <div></div>
           <div className={scssNavbar.item__links}>
-            <a href="#/">Профиль</a>
-            <a href="#/">Сообщения</a>
-            <a href="#/">Новости</a>
-            <a href="#/">Музыка</a>
-            <a href="#/">Настройки</a>
+            <NavLink exact to="/">Профиль</NavLink>
+            <NavLink to="/messages">Сообщения</NavLink>
+            <a>Музыка</a>
+            <a>Настройки</a>
           </div>
           <div className={scssNavbar.item__btns}>
             <button>Редатировать</button>

@@ -6,13 +6,23 @@ body {
   background-color: #f1f1f1;
   font-family: "Roboto", sans-serif;
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   outline: none;
 }
 
+.active {
+  color: #dc4734 !important;
+}
+::-webkit-scrollbar {
+  width: 4px;
+  background-color: #f9f9fd;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #dc4734;
+}
 .container {
   padding-right: 15px;
   padding-left: 15px;

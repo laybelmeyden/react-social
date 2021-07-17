@@ -1,0 +1,110 @@
+.grid__container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  margin-top: 30px;
+  grid-column-gap: 30px;
+  margin-bottom: 30px;
+  .blocks__sidebar {
+    position: relative;
+    background-color: white;
+    box-shadow: 0px 1px 15px 0px #33333333;
+    height: fit-content;
+    overflow-y: auto;
+    max-height: 600px;
+    overflow-y: auto;
+    a {
+      color: black;
+      text-decoration: none;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      padding: 25px 25px 25px 25px;
+      .img {
+        height: 45px;
+        width: 45px;
+        overflow: hidden;
+        border-radius: 60px;
+        img {
+          width: 100%;
+        }
+      }
+      .user__name {
+        font-weight: bold;
+        margin-left: 20px;
+      }
+      &:hover {
+        cursor: pointer;
+        background-color: #33333333;
+      }
+    }
+  }
+  .blocks__messages {
+    position: relative;
+    background-color: white;
+    box-shadow: 0px 1px 15px 0px #33333333;
+    height: 600px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 25px;
+    .item__messages {
+      height: 100%;
+      overflow-y: auto;
+      p {
+        background: #dc4734;
+        color: white;
+        margin: 10px;
+        width: fit-content;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 16px;
+      }
+      .left {
+        text-align: left;
+      }
+      .right {
+        display: flex;
+        width: 100%;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding-right: 40px;
+      }
+    }
+    .textarea {
+      width: 100%;
+      text-align: right;
+      margin-top: 40px;
+      textarea {
+        width: 100%;
+        resize: vertical;
+        min-height: 40px;
+        padding: 20px 20px;
+      }
+      button {
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1;
+        padding: 11px 28px;
+        display: inline-block;
+        border-radius: 50px;
+        text-transform: capitalize;
+        background-color: #dc4734;
+        border: 0;
+        cursor: pointer;
+      }
+    }
+  }
+}
+.activedialogs {
+  text-decoration: none;
+  cursor: pointer;
+  .item {
+    color: white;
+    background: rgba(220, 71, 52, 0.5);
+    &:hover {
+      color: black;
+    }
+  }
+}

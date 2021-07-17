@@ -1,5 +1,6 @@
 import "./../App.scss";
 import scssHeader from "./../css_modules/Header.module.scss";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -8,8 +9,8 @@ const Header = () => {
         <div className="container">
           <div className={scssHeader.navbar__grid}>
             <div className={scssHeader.item__links}>
-              <a href="#/">Главная</a>
-              <a href="#/">Сообщения</a>
+            <NavLink exact to="/">Профиль</NavLink>
+            <NavLink to="/messages">Сообщения</NavLink>
               <a href="#/">Уведомления</a>
             </div>
             <div className={scssHeader.item__logo}>
@@ -27,7 +28,7 @@ const Header = () => {
               </a>
             </div>
             <div className={scssHeader.item__search}>
-                  <input type="search" name="" id="" />
+                  <input type="search" name="" id="" placeholder="Поиск"/>
               <button>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
