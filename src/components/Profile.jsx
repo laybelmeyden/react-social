@@ -2,14 +2,19 @@ import React from "react";
 import "./../App.scss";
 import scssProfile from "./../css_modules/Profile.module.scss";
 import Post from "./Post";
+import {addPostActionCreater, newTextPostActionCreater} from './redux/state'
 
 const Profile = (props) => {
   const inputPost = React.createRef();
   const postPublish = () => {
-    const addPost = inputPost.current.value;
-    props.profilePageAddPost(addPost);
-    inputPost.current.value = '';
+    // props.profilePageAddPost();
+    props.dispatch(addPostActionCreater());
   };
+  let onPostChange = () =>{
+    let addPost = inputPost.current.value;
+    // props.updateNewText(addPost);
+    props.dispatch(newTextPostActionCreater(addPost))
+  }
   return (
     <div>
       <div className={`container ${scssProfile.grid__container}`}>
@@ -36,6 +41,8 @@ const Profile = (props) => {
                 <input
                   type="text"
                   ref={inputPost}
+                  onChange={onPostChange}
+                  value={props.state.newPostText}
                   placeholder="Напишите что-нибудь"
                 />
                 <button onClick={postPublish}>Опубликовать</button>

@@ -2,7 +2,7 @@ import React from "react";
 import "./../../../src/App.scss";
 import m from "./../messages/Message.module.scss";
 import { NavLink } from "react-router-dom";
-
+import {addMessageCreator, updateNewMessageTextCreator} from './../redux/state'
 
 const UserNameMessage = (user) => {
   return (
@@ -21,7 +21,6 @@ const UserNameMessage = (user) => {
 const UserMessage = (user) =>{
     return(
         <div>
-          {console.log(user)}
           <div className={m.left}>
             <p>{user.message}</p>
           </div>
@@ -33,11 +32,13 @@ const UserMessage = (user) =>{
 };
 
 const Message = (props) => {
-  const refUseMessage = React.createRef();
+  const newMessageText = props.state.newMessageText;
+  const onNewMessageTextChange = (e) =>{
+      const currentValue = e.currentTarget.value;
+      props.dispatch(updateNewMessageTextCreator(currentValue));
+  }
   const userMessage = () =>{
-    const messText = refUseMessage.current.value;
-    props.messagesPageAddPost(messText);
-    refUseMessage.current.value = '';
+    props.dispatch(addMessageCreator());
   }
   return (
     <div className="container">
@@ -50,7 +51,10 @@ const Message = (props) => {
           {props.state.userDialodsMessages.map(e => (<UserMessage message={e.mess} key={e.id}/>))}
           </div>
           <div className={m.textarea}>
-            <textarea ref={refUseMessage} placeholder="Введите ваше сообщение"></textarea>
+            <textarea 
+            onChange={onNewMessageTextChange}
+            value={newMessageText} 
+            placeholder="Введите ваше сообщение"></textarea>
             <button onClick={userMessage}>Отправить</button>
           </div>
         </div>

@@ -14,13 +14,13 @@ const App = (props) => {
           <Route exact path="/" render={
             ()=> <Profile 
             state={props.state.profilePage} 
-            profilePageAddPost={props.profilePageAddPost}
+            dispatch={props.dispatch}
             />}  />
           <Route  path="/messages" 
           render={
             ()=> <Message 
             state={props.state.messagesPage} 
-            messagesPageAddPost={props.messagesPageAddPost}
+            dispatch={props.dispatch}
             />} 
             />
         </div>

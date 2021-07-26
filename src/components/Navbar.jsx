@@ -12,8 +12,8 @@ const Navbar = () => {
           <div className={scssNavbar.item__links}>
             <NavLink exact to="/">Профиль</NavLink>
             <NavLink to="/messages">Сообщения</NavLink>
-            <a>Музыка</a>
-            <a>Настройки</a>
+            {/* <a>Музыка</a> */}
+            {/* <a>Настройки</a> */}
           </div>
           <div className={scssNavbar.item__btns}>
             <button>Редатировать</button>
