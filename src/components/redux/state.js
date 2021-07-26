@@ -1,3 +1,6 @@
+import messageReducer from "./messageReducer";
+import profileReducer from "./profileReducer";
+
 const ADD_POST = "ADD_POST";
 const NEW_TEXT_POST = "NEW-TEXT-POST";
 const UPDATE_NEW_MESSAGE = "UPDATE_NEW_MESSAGE";
@@ -38,50 +41,25 @@ let store = {
     console.log("123123");
   },
   dispatch(action) {
-    if (action.type === ADD_POST) {
-      const newPost = {
-        id: 5555,
-        mess: this._state.profilePage.newPostText,
-        like: 0,
-      };
-      this._state.profilePage.userPosts.push(newPost);
-      this._state.profilePage.newPostText = "";
-      this._rerenderFunc(this._state);
-    }
-    if (action.type === NEW_TEXT_POST) {
-      this._state.profilePage.newPostText = action.newText;
-      this._rerenderFunc(this._state);
-    }
-    if (action.type === ADD_MESSAGE) {
-      const newPost = {
-        id: 5555,
-        mess: this._state.messagesPage.newMessageText,
-      };
-      this._state.messagesPage.userDialodsMessages.push(newPost);
-      this._state.messagesPage.newMessageText = "";
-      this._rerenderFunc(this._state);
-
-    }
-    if (action.type === UPDATE_NEW_MESSAGE) {
-      this._state.messagesPage.newMessageText = action.newText;
-      this._rerenderFunc(this._state);
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.messagesPage = messageReducer(this._state.messagesPage, action);
+    this._rerenderFunc(this._state);
   },
   subscribe(observer) {
     this._rerenderFunc = observer;
   },
 };
 export const addPostActionCreater = () => {
-  return {type: ADD_POST};
+  return { type: ADD_POST };
 };
 export const newTextPostActionCreater = (addPost) => {
   return { type: NEW_TEXT_POST, newText: addPost };
 };
-export const addMessageCreator = () =>{
-  return {type: ADD_MESSAGE};
-}
-export const updateNewMessageTextCreator = (newText) =>{
-  return { type: UPDATE_NEW_MESSAGE, newText: newText };
-}
+export const addMessageCreator = () => {
+  return { type: ADD_MESSAGE };
+};
+export const updateNewMessageTextCreator = (addPost) => {
+  return { type: UPDATE_NEW_MESSAGE, newText: addPost };
+};
 export default store;
 window.store = store;

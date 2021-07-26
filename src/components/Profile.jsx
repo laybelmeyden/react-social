@@ -2,7 +2,7 @@ import React from "react";
 import "./../App.scss";
 import scssProfile from "./../css_modules/Profile.module.scss";
 import Post from "./Post";
-import {addPostActionCreater, newTextPostActionCreater} from './redux/state'
+import { addPostActionCreater, newTextPostActionCreater } from "./redux/state";
 
 const Profile = (props) => {
   const inputPost = React.createRef();
@@ -10,11 +10,11 @@ const Profile = (props) => {
     // props.profilePageAddPost();
     props.dispatch(addPostActionCreater());
   };
-  let onPostChange = () =>{
+  let onPostChange = () => {
     let addPost = inputPost.current.value;
     // props.updateNewText(addPost);
-    props.dispatch(newTextPostActionCreater(addPost))
-  }
+    props.dispatch(newTextPostActionCreater(addPost));
+  };
   return (
     <div>
       <div className={`container ${scssProfile.grid__container}`}>
@@ -40,8 +40,8 @@ const Profile = (props) => {
               <div className={scssProfile.share}>
                 <input
                   type="text"
-                  ref={inputPost}
                   onChange={onPostChange}
+                  ref={inputPost}
                   value={props.state.newPostText}
                   placeholder="Напишите что-нибудь"
                 />
@@ -51,7 +51,7 @@ const Profile = (props) => {
           </div>
           {/*  */}
           {props.state.userPosts.map((e) => (
-            <Post userPostMessage={e.mess} key={e.id}/>
+            <Post userPostMessage={e.mess} key={e.id} />
           ))}
           {/*  */}
         </div>
