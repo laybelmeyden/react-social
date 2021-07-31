@@ -2,7 +2,7 @@ import React from "react";
 import "./../App.scss";
 import scssProfile from "./../css_modules/Profile.module.scss";
 import Post from "./Post";
-import { addPostActionCreater, newTextPostActionCreater } from "./redux/state";
+import { addPostActionCreater, newTextPostActionCreater } from "./redux/profileReducer";
 
 const Profile = (props) => {
   const inputPost = React.createRef();

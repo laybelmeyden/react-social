@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Profile from "./components/Profile";
 import Message from "./components/messages/Message";
+import Friend from "./components/friends/AllFriends";
 import { Route } from "react-router-dom";
 
 const App = (props) => {
@@ -26,6 +27,15 @@ const App = (props) => {
           render={() => (
             <Message
               state={props.state.messagesPage}
+              dispatch={props.dispatch}
+            />
+          )}
+        />
+        <Route
+          path="/friends"
+          render={() => (
+            <Friend
+              state={props.state.friendsPage}
               dispatch={props.dispatch}
             />
           )}

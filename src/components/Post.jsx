@@ -3,6 +3,7 @@ import "./../App.scss";
 import scssProfile from "./../css_modules/Profile.module.scss";
 
 const Post = (props) => {
+  const newDate = new Date();
   return (
     <div>
       <div className={scssProfile.publisher__post}>
@@ -15,7 +16,7 @@ const Post = (props) => {
               <p>
                 <b>Kate Palson</b>
               </p>
-              <p>35 min ago</p>
+              <p>{newDate.getMinutes()} min ago</p>
             </div>
             <div className={scssProfile.post_settings_bar}>
               <span></span>

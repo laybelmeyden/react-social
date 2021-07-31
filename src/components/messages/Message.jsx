@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import {
   addMessageCreator,
   updateNewMessageTextCreator,
-} from "./../redux/state";
+} from "./../redux/messageReducer";
 
 const UserNameMessage = (user) => {
   return (

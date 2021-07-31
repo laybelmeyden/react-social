@@ -105,6 +105,7 @@ $shadow-color: #33333333;
       .items {
         .post_title {
           padding-top: 20px;
+          word-break: break-all;
         }
         .top_nav_item {
           display: flex;

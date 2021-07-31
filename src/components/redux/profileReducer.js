@@ -1,6 +1,12 @@
 const ADD_POST = "ADD_POST";
-const NEW_TEXT_POST = "NEW-TEXT-POST";
-const profileReducer = (state, action) => {
+const NEW_TEXT_POST = "NEW_TEXT_POST";
+
+const initialState = {
+  userPosts: [{ id: 1, mess: "test", like: 0 }],
+  newPostText: "Напишите что нибудь",
+}
+
+const profileReducer = (state = initialState, action) => {
   if (action.type === ADD_POST) {
     const newPost = {
       id: 5555,
@@ -15,4 +21,10 @@ const profileReducer = (state, action) => {
   }
   return state;
 };
+export const addPostActionCreater = () => {
+    return { type: ADD_POST };
+  };
+  export const newTextPostActionCreater = (addPost) => {
+    return { type: NEW_TEXT_POST, newText: addPost };
+  };
 export default profileReducer;
