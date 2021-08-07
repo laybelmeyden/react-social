@@ -2,18 +2,16 @@ import React from "react";
 import "./../App.scss";
 import scssProfile from "./../css_modules/Profile.module.scss";
 import Post from "./Post";
-import { addPostActionCreater, newTextPostActionCreater } from "./redux/profileReducer";
+
 
 const Profile = (props) => {
-  const inputPost = React.createRef();
+  const messageText = props.newPostText;
   const postPublish = () => {
-    // props.profilePageAddPost();
-    props.dispatch(addPostActionCreater());
+    props.profilePageAddPost();
   };
-  let onPostChange = () => {
-    let addPost = inputPost.current.value;
-    // props.updateNewText(addPost);
-    props.dispatch(newTextPostActionCreater(addPost));
+  let onPostChange = (e) => {
+    let text = e.currentTarget.value;
+    props.updateNewText(text);
   };
   return (
     <div>
@@ -41,8 +39,7 @@ const Profile = (props) => {
                 <input
                   type="text"
                   onChange={onPostChange}
-                  ref={inputPost}
-                  value={props.state.newPostText}
+                  value={messageText}
                   placeholder="Напишите что-нибудь"
                 />
                 <button onClick={postPublish}>Опубликовать</button>
@@ -50,8 +47,8 @@ const Profile = (props) => {
             </div>
           </div>
           {/*  */}
-          {props.state.userPosts.map((e) => (
-            <Post userPostMessage={e.mess} key={e.id} />
+          {props.profilePage.userPosts.map((e, i) => (
+            <Post userPostMessage={e.mess} key={i} />
           ))}
           {/*  */}
         </div>

@@ -4,10 +4,11 @@ const initialState = {
   usersFilter: "",
 };
 const friendReducer = (state = initialState, action) => {
+  const stateCopy = {...state};
   if (action.type === UPDATE_USERS_FILTER) {
-    state.usersFilter = action.searchTarget;
+    stateCopy.usersFilter = action.searchTarget;
   }
-  return state;
+  return stateCopy;
 };
 export const UserFilterActionCreater = (searchTarget) => {
   return { type: UPDATE_USERS_FILTER, searchTarget: searchTarget };

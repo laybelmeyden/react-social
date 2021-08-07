@@ -1,12 +1,15 @@
 import "./App.scss";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
-import Profile from "./components/Profile";
-import Message from "./components/messages/Message";
-import Friend from "./components/friends/AllFriends";
+// import Profile from "./components/Profile";
+// import Message from "./components/messages/Message";
+// import Friend from "./components/friends/AllFriends";
 import { Route } from "react-router-dom";
+import ProfileContainer from "./components/ProfileContainer";
+import MessageContainer from "./components/messages/MessageContainer";
+import AllFriendsContainer from "./components/friends/AllFriendsContainer";
 
-const App = (props) => {
+const App = () => {
   return (
     <div>
       <Header />
@@ -16,27 +19,35 @@ const App = (props) => {
           exact
           path="/"
           render={() => (
-            <Profile
-              state={props.state.profilePage}
-              dispatch={props.dispatch}
+            // <Profile
+            //   state={props.state.profilePage}
+            //   dispatch={props.dispatch}
+            // />
+            <ProfileContainer
+              // store={props.state.profilePage}
+              // dispatch={props.dispatch}
             />
           )}
         />
         <Route
           path="/messages"
           render={() => (
-            <Message
-              state={props.state.messagesPage}
-              dispatch={props.dispatch}
+            // <Message
+            //   state={props.state.messagesPage}
+            //   dispatch={props.dispatch}
+            // />
+            <MessageContainer
+              // store={props.state.messagesPage}
+              // dispatch={props.dispatch}
             />
           )}
         />
         <Route
           path="/friends"
           render={() => (
-            <Friend
-              state={props.state.friendsPage}
-              dispatch={props.dispatch}
+            <AllFriendsContainer
+              // state={props.state.friendsPage}
+              // dispatch={props.dispatch}
             />
           )}
         />

@@ -14,18 +14,20 @@ const initialState = {
 }
 
 const messageReducer = (state = initialState, action) => {
+  const stateCopy = {...state};
   if (action.type === ADD_MESSAGE) {
     const newPost = {
       id: 5555,
-      mess: state.newMessageText,
+      mess: stateCopy.newMessageText,
     };
-    state.userDialodsMessages.push(newPost);
-    state.newMessageText = "";
+    stateCopy.userDialodsMessages = [...state.userDialodsMessages];
+    stateCopy.userDialodsMessages.push(newPost);
+    stateCopy.newMessageText = "";
   }
   if (action.type === UPDATE_NEW_MESSAGE) {
-    state.newMessageText = action.newText;
+    stateCopy.newMessageText = action.newText;
   }
-  return state;
+  return stateCopy;
 };
 export const addMessageCreator = () => {
     return { type: ADD_MESSAGE };
