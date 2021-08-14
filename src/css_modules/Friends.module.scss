@@ -1,58 +1,134 @@
 $shadow-color: #33333333;
 .publisher__input {
-    background-color: white;
-    box-shadow: 0px 1px 15px 0px $shadow-color;
-    height: 77px;
-    padding: 15px;
-    margin-top: 30px;
-    .grid {
-      display: grid;
-      grid-template-columns: 50px 1fr;
-      column-gap: 15px;
-      .share {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        input {
-          width: 100%;
-          border: none;
-          display: block;
-          height: 44px;
-          padding: 13px 155px 13px 20px;
-          position: relative;
-          border-radius: 50px;
-          overflow: hidden;
-          background-color: #f1f1f1;
-          box-shadow: inset 0px 1px 10px 0px rgba(85, 85, 85, 20%);
-          transition: all 0.4s ease;
-          text-indent: 5px;
-        }
-        button {
-          margin-right: 5px;
-          font-size: 12px;
-          font-weight: 700;
-          color: #fff;
-          line-height: 1;
-          padding: 11px 25px;
-          border-radius: 40px;
-          background-color: #dc4734;
-          position: absolute;
-          text-transform: uppercase;
-          border: 0;
-          cursor: pointer;
-          &:hover {
-            background-color: #333333;
-          }
+  background-color: white;
+  box-shadow: 0px 1px 15px 0px $shadow-color;
+  height: 77px;
+  padding: 15px;
+  margin-top: 30px;
+  position: sticky;
+  top: 60px;
+  z-index: 999;
+  .grid {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    column-gap: 15px;
+    .share {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      input {
+        width: 100%;
+        border: none;
+        display: block;
+        height: 44px;
+        padding: 13px 155px 13px 20px;
+        position: relative;
+        border-radius: 50px;
+        overflow: hidden;
+        background-color: #f1f1f1;
+        box-shadow: inset 0px 1px 10px 0px rgba(85, 85, 85, 20%);
+        transition: all 0.4s ease;
+        text-indent: 5px;
+      }
+      button {
+        margin-right: 5px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1;
+        padding: 11px 25px;
+        border-radius: 40px;
+        background-color: #dc4734;
+        position: absolute;
+        text-transform: uppercase;
+        border: 0;
+        cursor: pointer;
+        &:hover {
+          background-color: #333333;
         }
       }
-      .img {
-        height: 45px;
-        width: 45px;
-        overflow: hidden;
-        border-radius: 60px;
-        img {
-          width: 100%;
+    }
+    .img {
+      height: 45px;
+      width: 45px;
+      overflow: hidden;
+      border-radius: 60px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+.grid_users {
+  display: grid;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 150px));
+  justify-content: space-between;
+  gap: 30px;
+  .img__container {
+    overflow: hidden;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .text__container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    p{
+      width: 100%;
+    }
+    .item__name{
+      text-align: center;
+      text-align: center;
+      padding-top: 10px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .item__city{
+      font-size: 12px;
+      text-align: center;
+    }
+    .item__text{
+      margin-bottom: 10px;
+      font-size: 12px;
+      text-align: center;
+      height: 50px;
+    }
+    .btn__container{
+      width: 100%;
+      position: relative;
+      .follow{
+        background-color: #43b576;
+      }
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-right: 5px;
+        font-size: 10px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1;
+        padding: 11px 25px;
+        border-radius: 40px;
+        background-color: #dc4734;
+        text-transform: uppercase;
+        border: 0;
+        cursor: pointer;
+        &:hover {
+          background-color: #333333;
         }
       }
     }
   }
+}

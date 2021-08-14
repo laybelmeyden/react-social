@@ -3,7 +3,7 @@ const NEW_TEXT_POST = "NEW_TEXT_POST";
 
 const initialState = {
   userPosts: [{ id: 0, mess: "test", like: 0 }],
-  newPostText: "Напишите что нибудь",
+  newPostText: "",
 }
 
 const profileReducer = (state = initialState, action) => {

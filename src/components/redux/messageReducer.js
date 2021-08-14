@@ -14,13 +14,15 @@ const initialState = {
 }
 
 const messageReducer = (state = initialState, action) => {
-  const stateCopy = {...state};
+  const stateCopy = {
+    ...state,
+    userDialodsMessages: [...state.userDialodsMessages]
+  };
   if (action.type === ADD_MESSAGE) {
     const newPost = {
       id: 5555,
       mess: stateCopy.newMessageText,
     };
-    stateCopy.userDialodsMessages = [...state.userDialodsMessages];
     stateCopy.userDialodsMessages.push(newPost);
     stateCopy.newMessageText = "";
   }

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import AllFriends from './../friends/AllFriends'
-import { UserFilterActionCreater } from "./../redux/friendReducer";
+import { setUsers, userFilterActionCreater, userFollow, userUnfollow } from "./../redux/friendReducer";
 
 const mapStateToProps = (state) => {
   return {
@@ -10,7 +10,16 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     UserFilterActionCreater: (searchTarget) =>{
-      dispatch(UserFilterActionCreater(searchTarget));
+      dispatch(userFilterActionCreater(searchTarget));
+    },
+    userFollow: (userid) => {
+      dispatch(userFollow(userid))
+    },
+    userUnfollow: (userid) => {
+      dispatch(userUnfollow(userid))
+    },
+    setUsers: (users) => {
+      dispatch(setUsers(users))
     }
   };
 };
