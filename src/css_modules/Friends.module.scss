@@ -78,35 +78,35 @@ $shadow-color: #33333333;
       width: 100%;
     }
   }
-  .text__container{
+  .text__container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    p{
+    p {
       width: 100%;
     }
-    .item__name{
+    .item__name {
       text-align: center;
       text-align: center;
       padding-top: 10px;
       font-weight: bold;
       font-size: 14px;
     }
-    .item__city{
+    .item__city {
       font-size: 12px;
       text-align: center;
     }
-    .item__text{
+    .item__text {
       margin-bottom: 10px;
       font-size: 12px;
       text-align: center;
       height: 50px;
     }
-    .btn__container{
+    .btn__container {
       width: 100%;
       position: relative;
-      .follow{
+      .follow {
         background-color: #43b576;
       }
       button {
@@ -127,6 +127,47 @@ $shadow-color: #33333333;
         cursor: pointer;
         &:hover {
           background-color: #333333;
+        }
+      }
+    }
+  }
+}
+.paginate__container {
+  margin: 60px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  ul {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    li {
+      display: inline;
+      span {
+        cursor: pointer;
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        &.active {
+          background-color: #dc4734;
+          color: white;
+        }
+        &:hover {
+          background-color: #333333;
+          color: white;
+        }
+        &.firstButton{
+          // color: white;
+          // background: #dc47344a;
+          &::after{
+            content: "...";
+          }
+        }
+        &.lastButton{
+          &::before{
+            content: "...";
+          }
         }
       }
     }

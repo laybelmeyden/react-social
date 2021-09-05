@@ -1,0 +1,22 @@
+.item__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 350px;
+    a {
+      height: auto;
+      svg {
+        width: 200px;
+        g{
+            fill: black;
+        }
+      }
+        svg {
+          animation: bounce infinite 4s linear;
+        }
+    }
+    @keyframes bounce {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+  }
