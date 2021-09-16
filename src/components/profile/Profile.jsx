@@ -1,31 +1,33 @@
 import React from "react";
-import "./../App.scss";
-import scssProfile from "./../css_modules/Profile.module.scss";
-import Post from "./Post";
+import "./../../App.scss";
+import scssProfile from "./../../css_modules/Profile.module.scss";
+import Post from "../profile/Post";
+import Loader from "../loader/loader";
 
 
 const Profile = (props) => {
   const messageText = props.newPostText;
   const postPublish = () => {
-    props.profilePageAddPost();
+    props.addPost();
   };
   let onPostChange = (e) => {
     let text = e.currentTarget.value;
-    props.updateNewText(text);
+    props.newTextPost(text);
   };
+  if(!props.profile || props.isFetching ) return <Loader />
   return (
     <div>
       <div className={`container ${scssProfile.grid__container}`}>
         <div className={scssProfile.item__left}>
           <div className={scssProfile.profile__img}>
-            <img src="./../dump-it-bogdanov-s-telefonom.jpg" alt="" />
+            {/* <img src="./../dump-it-bogdanov-s-telefonom.jpg" alt="" /> */}
+            <img src={props.profile.photos.large || "https://img2.freepng.ru/20180410/loe/kisspng-user-computer-icons-anonymity-head-5acc3add493958.2652966915233338532999.jpg"} alt="" />
           </div>
           <div className={scssProfile.profile__info}>
-            <h3>Тул Ларпер</h3>
+            <h3>{props.profile.fullName} / {props.profile.lookingForAJobDescription}</h3>
             <div></div>
             <p>
-              Я не знаю, как это сделать? Но я верю, что однажды это возможно,
-              если я все время буду оставаться со своей мечтой
+              {props.profile.aboutMe}
             </p>
           </div>
         </div>
@@ -33,7 +35,7 @@ const Profile = (props) => {
           <div className={scssProfile.publisher__input}>
             <div className={scssProfile.grid}>
               <div className={scssProfile.img}>
-                <img src="./../dump-it-bogdanov-s-telefonom.jpg" alt="" />
+              <img src={props.profile.photos.small || "https://img2.freepng.ru/20180410/loe/kisspng-user-computer-icons-anonymity-head-5acc3add493958.2652966915233338532999.jpg"} alt="" />
               </div>
               <div className={scssProfile.share}>
                 <input
@@ -48,17 +50,17 @@ const Profile = (props) => {
           </div>
           {/*  */}
           {props.profilePage.userPosts.map((e, i) => (
-            <Post userPostMessage={e.mess} key={i} />
+            <Post userPostMessage={e.mess} key={i} profile={props.profile}/>
           ))}
           {/*  */}
         </div>
-        <div className={scssProfile.item__right}>
+        {/* <div className={scssProfile.item__right}>
           <h3>Уведомления</h3>
           <div className={scssProfile.hr}></div>
           <a href="#/">
             <div className={scssProfile.notification__grid}>
               <div className={scssProfile.img}>
-                <img src="./../dump-it-bogdanov-s-telefonom.jpg" alt="" />
+              <img src={props.profile.photos.small || "https://img2.freepng.ru/20180410/loe/kisspng-user-computer-icons-anonymity-head-5acc3add493958.2652966915233338532999.jpg"} alt="" />
               </div>
               <div>
                 <p>
@@ -71,7 +73,7 @@ const Profile = (props) => {
           <a href="#/">
             <div className={scssProfile.notification__grid}>
               <div className={scssProfile.img}>
-                <img src="./../dump-it-bogdanov-s-telefonom.jpg" alt="" />
+              <img src={props.profile.photos.small || "https://img2.freepng.ru/20180410/loe/kisspng-user-computer-icons-anonymity-head-5acc3add493958.2652966915233338532999.jpg"} alt="" />
               </div>
               <div>
                 <p>
@@ -84,7 +86,7 @@ const Profile = (props) => {
           <a href="#/">
             <div className={scssProfile.notification__grid}>
               <div className={scssProfile.img}>
-                <img src="./../dump-it-bogdanov-s-telefonom.jpg" alt="" />
+              <img src={props.profile.photos.small || "https://img2.freepng.ru/20180410/loe/kisspng-user-computer-icons-anonymity-head-5acc3add493958.2652966915233338532999.jpg"} alt="" />
               </div>
               <div>
                 <p>
@@ -94,7 +96,7 @@ const Profile = (props) => {
               </div>
             </div>
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -9,10 +9,10 @@ const Message = (props) => {
   const messageText = props.newMessageText;
   const onNewMessageTextChange = (e) => {
     const text = e.currentTarget.value;
-    props.updateNewMessageTextCreator(text);
+    props.updateNewMessageText(text);
   };
   const userMessage = () => {
-    props.addMessageCreator();
+    props.addMessage();
   };
   return (
     <div className="container">

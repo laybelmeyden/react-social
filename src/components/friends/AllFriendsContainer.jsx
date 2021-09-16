@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import {
   setUsers,
-  userFilterActionCreater,
+  userFilterCreater,
   userFollow,
   userUnfollow,
   setCurrentPage,
@@ -69,35 +69,44 @@ const mapStateToProps = (state) => {
     isFetching: state.friendsPage.isFetching,
   };
 };
-const mapDispatchToProps = (dispatch) => {
-  return {
-    UserFilterActionCreater: (searchTarget) => {
-      dispatch(userFilterActionCreater(searchTarget));
-    },
-    userFollow: (userid) => {
-      dispatch(userFollow(userid));
-    },
-    userUnfollow: (userid) => {
-      dispatch(userUnfollow(userid));
-    },
-    setUsers: (users) => {
-      dispatch(setUsers(users));
-    },
-    setCurrentPage: (currentPage) => {
-      dispatch(setCurrentPage(currentPage));
-    },
-    setUsersTotalCount: (totalCount) => {
-      dispatch(setUsersTotalCount(totalCount));
-    },
-    setisFetching: (isFetching) => {
-      dispatch(setisFetching(isFetching));
-    },
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     UserFilterActionCreater: (searchTarget) => {
+//       dispatch(userFilterActionCreater(searchTarget));
+//     },
+//     userFollow: (userid) => {
+//       dispatch(userFollow(userid));
+//     },
+//     userUnfollow: (userid) => {
+//       dispatch(userUnfollow(userid));
+//     },
+//     setUsers: (users) => {
+//       dispatch(setUsers(users));
+//     },
+//     setCurrentPage: (currentPage) => {
+//       dispatch(setCurrentPage(currentPage));
+//     },
+//     setUsersTotalCount: (totalCount) => {
+//       dispatch(setUsersTotalCount(totalCount));
+//     },
+//     setisFetching: (isFetching) => {
+//       dispatch(setisFetching(isFetching));
+//     },
+//   };
+// };
 
 const AllFriendsContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  {
+    userFilterCreater,
+    userFollow,
+    userUnfollow,
+    setUsers,
+    setCurrentPage,
+    setUsersTotalCount,
+    setisFetching,
+
+  }
 )(UsersAPIComponent);
 
 export default AllFriendsContainer;

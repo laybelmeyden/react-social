@@ -1,32 +1,54 @@
 const ADD_POST = "ADD_POST";
 const NEW_TEXT_POST = "NEW_TEXT_POST";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
+const TOGGLE_isFetching = "TOGGLE_isFetching";
 
 const initialState = {
   userPosts: [{ id: 0, mess: "test", like: 0 }],
   newPostText: "",
-}
+  profile: null,
+  isFetching: true,
+};
 
 const profileReducer = (state = initialState, action) => {
-  const stateCopy = {...state};
-  if (action.type === ADD_POST) {
-    const newPost = {
-      id: 5555,
-      mess: stateCopy.newPostText,
-      like: 0,
-    };
-    stateCopy.userPosts = [...state.userPosts];
-    stateCopy.userPosts.push(newPost);
-    stateCopy.newPostText = "";
+  switch (action.type) {
+    case ADD_POST:
+      const newPost = {
+        id: 5555,
+        mess: state.newPostText,
+        like: 0,
+      };
+      return {
+        ...state,
+        userPosts: [...state.userPosts, newPost],
+        newPostText: ""
+      };
+    case NEW_TEXT_POST:
+      return {
+        ...state,
+        newPostText: action.newText
+      };
+    case SET_USER_PROFILE:{
+      return{
+        ...state, profile: action.profile
+      }
+    }
+    case TOGGLE_isFetching:
+      return { ...state, isFetching: action.isFetching }
+    default:
+      return state;
   }
-  if (action.type === NEW_TEXT_POST) {
-    stateCopy.newPostText = action.newText;
-  }
-  return stateCopy;
 };
-export const addPostActionCreater = () => {
-    return { type: ADD_POST };
-  };
-  export const newTextPostActionCreater = (addPost) => {
-    return { type: NEW_TEXT_POST, newText: addPost};
-  };
+export const addPost = () => {
+  return { type: ADD_POST };
+};
+export const newTextPost = (addPost) => {
+  return { type: NEW_TEXT_POST, newText: addPost };
+};
+export const setUserProfile = (profile) => {
+  return { type: SET_USER_PROFILE, profile };
+};
+export const setisFetching = (isFetching) => {
+  return { type: TOGGLE_isFetching, isFetching };
+};
 export default profileReducer;

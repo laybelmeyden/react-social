@@ -5,7 +5,7 @@ import Header from "./components/Header";
 // import Message from "./components/messages/Message";
 // import Friend from "./components/friends/AllFriends";
 import { Route } from "react-router-dom";
-import ProfileContainer from "./components/ProfileContainer";
+import ProfileContainer from "./components/profile/ProfileContainer";
 import MessageContainer from "./components/messages/MessageContainer";
 import AllFriendsContainer from "./components/friends/AllFriendsContainer";
 
@@ -15,20 +15,8 @@ const App = () => {
       <Header />
       <div className="grid__container">
         <Navbar />
-        <Route
-          exact
-          path="/"
-          render={() => (
-            // <Profile
-            //   state={props.state.profilePage}
-            //   dispatch={props.dispatch}
-            // />
-            <ProfileContainer
-              // store={props.state.profilePage}
-              // dispatch={props.dispatch}
-            />
-          )}
-        />
+        <Route exact path="/" render={() => <ProfileContainer />} />
+        <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
         <Route
           path="/messages"
           render={() => (
@@ -37,8 +25,8 @@ const App = () => {
             //   dispatch={props.dispatch}
             // />
             <MessageContainer
-              // store={props.state.messagesPage}
-              // dispatch={props.dispatch}
+            // store={props.state.messagesPage}
+            // dispatch={props.dispatch}
             />
           )}
         />
@@ -46,8 +34,8 @@ const App = () => {
           path="/friends"
           render={() => (
             <AllFriendsContainer
-              // state={props.state.friendsPage}
-              // dispatch={props.dispatch}
+            // state={props.state.friendsPage}
+            // dispatch={props.dispatch}
             />
           )}
         />

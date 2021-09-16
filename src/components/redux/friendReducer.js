@@ -84,7 +84,7 @@ const friendReducer = (state = initialState, action) => {
   // }
   // return state;
 };
-export const userFilterActionCreater = (searchTarget) => {
+export const userFilterCreater = (searchTarget) => {
   return { type: UPDATE_USERS_FILTER, searchTarget };
 };
 export const userFollow = (userid) => {

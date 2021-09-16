@@ -1,7 +1,7 @@
 $shadow-color: #33333333;
 .grid__container {
   display: grid;
-  grid-template-columns: 270px 1fr 270px;
+  grid-template-columns: 270px 1fr;
   grid-gap: 30px;
   padding-top: 30px;
   .item__left {
@@ -128,7 +128,7 @@ $shadow-color: #33333333;
               width: 20px;
               height: 1px;
               display: block;
-              background-color: #ccc;
+              background-color: #dc4734;
               margin-bottom: 4px;
               transition: 0.4s;
             }
