@@ -31,7 +31,7 @@ class UsersAPIComponent extends React.Component {
   render() {
     const onFriendsChange = (e) => {
       const searchTarget = e.target.value;
-      this.props.UserFilterActionCreater(searchTarget);
+      this.props.userFilterCreater(searchTarget);
     };
     const currentPageClick = (e) => {
       this.props.setisFetching(true);
