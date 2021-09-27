@@ -1,6 +1,6 @@
 import React from "react";
 import "./../../App.scss";
-import scssProfile from "./../../css_modules/Profile.module.scss";
+import scssProfile from "./Profile.module.scss";
 
 const Post = (props) => {
   const newDate = new Date();

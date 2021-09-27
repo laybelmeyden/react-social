@@ -1,32 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  setUsers,
   userFilterCreater,
-  userFollow,
-  userUnfollow,
-  setCurrentPage,
-  setUsersTotalCount,
-  setisFetching,
+  getUsersThunkCreator,
+  getPagesThunkCreator,
+  userUnfollowThunk,
+  userFollowThunk,
 } from "./../redux/friendReducer";
-import axios from "axios";
 import Users from "./Users";
-
 class UsersAPIComponent extends React.Component {
   // constructor(props){
   //     super(props);
   // }
   componentDidMount() {
-    this.props.setisFetching(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
-      )
-      .then((res) => {
-        this.props.setUsers(res.data.items);
-        this.props.setUsersTotalCount(res.data.totalCount);
-        this.props.setisFetching(false);
-      });
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
   render() {
     const onFriendsChange = (e) => {
@@ -34,29 +21,22 @@ class UsersAPIComponent extends React.Component {
       this.props.userFilterCreater(searchTarget);
     };
     const currentPageClick = (e) => {
-      this.props.setisFetching(true);
-      this.props.setCurrentPage(e);
-      axios
-        .get(
-          `https://social-network.samuraijs.com/api/1.0/users?page=${e}&count=${this.props.pageSize}`
-        )
-        .then((res) => {
-          this.props.setUsers(res.data.items);
-          this.props.setisFetching(false);
-        });
+      this.props.getPages(e, this.props.pageSize);
     };
     return (
-          <Users
-            onFriendsChange={onFriendsChange}
-            currentPageClick={currentPageClick}
-            currentPage={this.props.currentPage}
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            friendsPage={this.props.friendsPage}
-            userFollow={this.props.userFollow}
-            userUnfollow={this.props.userUnfollow}
-            isFetching={this.props.isFetching}
-          />
+      <Users
+        onFriendsChange={onFriendsChange}
+        currentPageClick={currentPageClick}
+        currentPage={this.props.currentPage}
+        totalUsersCount={this.props.totalUsersCount}
+        pageSize={this.props.pageSize}
+        friendsPage={this.props.friendsPage}
+        userFollowThunk={this.props.userFollowThunk}
+        userUnfollowThunk={this.props.userUnfollowThunk}
+        isFetching={this.props.isFetching}
+        isProgress={this.props.isProgress}
+        setisProgress={this.props.setisProgress}
+      />
     );
   }
 }
@@ -67,6 +47,8 @@ const mapStateToProps = (state) => {
     totalUsersCount: state.friendsPage.totalUsersCount,
     currentPage: state.friendsPage.currentPage,
     isFetching: state.friendsPage.isFetching,
+    isProgress: state.friendsPage.isProgress,
+    setisProgress: state.friendsPage.setisProgress,
   };
 };
 // const mapDispatchToProps = (dispatch) => {
@@ -95,18 +77,12 @@ const mapStateToProps = (state) => {
 //   };
 // };
 
-const AllFriendsContainer = connect(
-  mapStateToProps,
-  {
-    userFilterCreater,
-    userFollow,
-    userUnfollow,
-    setUsers,
-    setCurrentPage,
-    setUsersTotalCount,
-    setisFetching,
-
-  }
-)(UsersAPIComponent);
+const AllFriendsContainer = connect(mapStateToProps, {
+  userFilterCreater,
+  getUsers: getUsersThunkCreator,
+  getPages: getPagesThunkCreator,
+  userFollowThunk,
+  userUnfollowThunk,
+})(UsersAPIComponent);
 
 export default AllFriendsContainer;

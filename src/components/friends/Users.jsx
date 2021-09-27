@@ -1,5 +1,5 @@
 import React from "react";
-import scssFriends from "./../../css_modules/Friends.module.scss";
+import scssFriends from "./Friends.module.scss";
 import FriendItem from "./FriendItem";
 import classNames from "classnames";
 import Loader from "../loader/loader";
@@ -47,8 +47,10 @@ const Users = (props) => {
               item={item}
               key={index}
               id={item.id}
-              userFollow={props.userFollow}
-              userUnfollow={props.userUnfollow}
+              userFollowThunk={props.userFollowThunk}
+              userUnfollowThunk={props.userUnfollowThunk}
+              isProgress={props.isProgress}
+              setisProgress={props.setisProgress}
             />
           ))}
       </div>

@@ -1,3 +1,5 @@
+import { getCurrentProfile, getCurrentProfileId } from "../../api/api";
+
 const ADD_POST = "ADD_POST";
 const NEW_TEXT_POST = "NEW_TEXT_POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
@@ -8,6 +10,7 @@ const initialState = {
   newPostText: "",
   profile: null,
   isFetching: true,
+  userId: null
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -51,4 +54,20 @@ export const setUserProfile = (profile) => {
 export const setisFetching = (isFetching) => {
   return { type: TOGGLE_isFetching, isFetching };
 };
+
+export const currentProfileThunk = (userId) => {
+  return (dispatch) => {
+    dispatch(setisFetching(true));
+    getCurrentProfile()
+      .then((res) => {
+        if(res.data.resultCode === 0){
+          getCurrentProfileId(userId, res.data.data.id).then((res) => {
+            dispatch(setUserProfile(res.data));
+            dispatch(setisFetching(false));
+          });
+        }
+      });
+  };
+};
+
 export default profileReducer;

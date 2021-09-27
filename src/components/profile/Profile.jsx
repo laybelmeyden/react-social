@@ -1,9 +1,8 @@
 import React from "react";
 import "./../../App.scss";
-import scssProfile from "./../../css_modules/Profile.module.scss";
+import scssProfile from "./Profile.module.scss";
 import Post from "../profile/Post";
 import Loader from "../loader/loader";
-
 
 const Profile = (props) => {
   const messageText = props.newPostText;
@@ -14,28 +13,41 @@ const Profile = (props) => {
     let text = e.currentTarget.value;
     props.newTextPost(text);
   };
-  if(!props.profile || props.isFetching ) return <Loader />
+  if (!props.profile || props.isFetching) return <Loader />;
   return (
     <div>
       <div className={`container ${scssProfile.grid__container}`}>
         <div className={scssProfile.item__left}>
           <div className={scssProfile.profile__img}>
             {/* <img src="./../dump-it-bogdanov-s-telefonom.jpg" alt="" /> */}
-            <img src={props.profile.photos.large || "https://img2.freepng.ru/20180410/loe/kisspng-user-computer-icons-anonymity-head-5acc3add493958.2652966915233338532999.jpg"} alt="" />
+            <img
+              src={
+                props.profile.photos.large ||
+                "https://img2.freepng.ru/20180410/loe/kisspng-user-computer-icons-anonymity-head-5acc3add493958.2652966915233338532999.jpg"
+              }
+              alt=""
+            />
           </div>
           <div className={scssProfile.profile__info}>
-            <h3>{props.profile.fullName} / {props.profile.lookingForAJobDescription}</h3>
+            <h3>
+              {props.profile.fullName} /{" "}
+              {props.profile.lookingForAJobDescription || "информации нет"}
+            </h3>
             <div></div>
-            <p>
-              {props.profile.aboutMe}
-            </p>
+            <p>{props.profile.aboutMe || "информации нет"}</p>
           </div>
         </div>
         <div className={scssProfile.item__center}>
           <div className={scssProfile.publisher__input}>
             <div className={scssProfile.grid}>
               <div className={scssProfile.img}>
-              <img src={props.profile.photos.small || "https://img2.freepng.ru/20180410/loe/kisspng-user-computer-icons-anonymity-head-5acc3add493958.2652966915233338532999.jpg"} alt="" />
+                <img
+                  src={
+                    props.profile.photos.small ||
+                    "https://img2.freepng.ru/20180410/loe/kisspng-user-computer-icons-anonymity-head-5acc3add493958.2652966915233338532999.jpg"
+                  }
+                  alt=""
+                />
               </div>
               <div className={scssProfile.share}>
                 <input
@@ -50,7 +62,7 @@ const Profile = (props) => {
           </div>
           {/*  */}
           {props.profilePage.userPosts.map((e, i) => (
-            <Post userPostMessage={e.mess} key={i} profile={props.profile}/>
+            <Post userPostMessage={e.mess} key={i} profile={props.profile} />
           ))}
           {/*  */}
         </div>

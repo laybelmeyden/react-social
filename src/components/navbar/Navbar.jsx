@@ -1,5 +1,5 @@
-import "./../App.scss";
-import scssNavbar from "./../css_modules/Navbar.module.scss";
+import "./../../App.scss";
+import scssNavbar from "./Navbar.module.scss";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {

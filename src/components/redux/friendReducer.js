@@ -1,3 +1,5 @@
+import { getFollow, getPages, getUnfollow, getUsers } from "../../api/api";
+
 const UPDATE_USERS_FILTER = "UPDATE_USERS_FILTER";
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -5,8 +7,7 @@ const SET_USERS = "SET_USERS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const TOGGLE_isFetching = "TOGGLE_isFetching";
-
-
+const IS_PROGRESS = "IS_PROGRESS";
 
 const initialState = {
   users: [],
@@ -15,19 +16,20 @@ const initialState = {
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: true,
+  isProgress: [],
 };
 const friendReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_USERS_FILTER:
       state.usersFilter = action.searchTarget;
-      return {...state};
-      case FOLLOW:
-        return {
-          ...state,
-          users: state.users.map((e) => {
-            if (e.id === action.userid) {
-              return { ...e, followed: true };
-            }
+      return { ...state };
+    case FOLLOW:
+      return {
+        ...state,
+        users: state.users.map((e) => {
+          if (e.id === action.userid) {
+            return { ...e, followed: true };
+          }
           return e;
         }),
       };
@@ -42,47 +44,23 @@ const friendReducer = (state = initialState, action) => {
         }),
       };
     case TOGGLE_isFetching:
-      return { ...state, isFetching: action.isFetching }
+      return { ...state, isFetching: action.isFetching };
+    case IS_PROGRESS:
+      return {
+        ...state,
+        isProgress: action.isProgress
+          ? [...state.isProgress, action.userId]
+          : state.isProgress.filter((id) => id !== action.userId),
+      };
     case SET_USERS:
       return { ...state, users: action.users };
     case SET_CURRENT_PAGE:
-      return {...state, currentPage: action.currentPage}
+      return { ...state, currentPage: action.currentPage };
     case SET_TOTAL_USERS_COUNT:
-      return {...state, totalUsersCount: action.e}
+      return { ...state, totalUsersCount: action.e };
     default:
       return state;
   }
-
-  // if (action.type === FOLLOW) {
-  //   return {
-  //     ...state,
-  //     users: state.users.map(e => {
-  //       if (e.id === action.userid) {
-  //         return { ...e, follower: true };
-  //       }
-  //       return e;
-  //     })
-  //   }
-  // }
-  // if (action.type === UNFOLLOW) {
-  //   return {
-  //     ...state,
-  //     users: state.users.map(e => {
-  //       if (e.id === action.userid) {
-  //         return { ...e, follower: false };
-  //       }
-  //       return e;
-  //     })
-  //   }
-  // }
-  // if (action.type === UPDATE_USERS_FILTER) {
-  //   state.usersFilter = action.searchTarget
-  //   return {...state}
-  // }
-  // if (action.type === SET_USERS) {
-  //   return { ...state, users: [...state.users, ...action.users] };
-  // }
-  // return state;
 };
 export const userFilterCreater = (searchTarget) => {
   return { type: UPDATE_USERS_FILTER, searchTarget };
@@ -104,6 +82,52 @@ export const setUsersTotalCount = (e) => {
 };
 export const setisFetching = (isFetching) => {
   return { type: TOGGLE_isFetching, isFetching };
+};
+export const setisProgress = (isProgress, userId) => {
+  return { type: IS_PROGRESS, isProgress, userId };
+};
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(setisFetching(true));
+    getUsers(currentPage, pageSize).then((res) => {
+      dispatch(setUsers(res.data.items));
+      dispatch(setUsersTotalCount(res.data.totalCount));
+      dispatch(setisFetching(false));
+    });
+  };
+};
+export const getPagesThunkCreator = (e, pageSize) => {
+  return (dispatch) => {
+    dispatch(setisFetching(true));
+    dispatch(setCurrentPage(e));
+    getPages(e, pageSize).then((res) => {
+      dispatch(setUsers(res.data.items));
+      dispatch(setisFetching(false));
+    });
+  };
+};
+export const userFollowThunk = (id) => {
+  return (dispatch) => {
+    dispatch(setisProgress(true, id));
+    getFollow(id).then((res) => {
+      if (res.data.resultCode === 0) {
+        dispatch(userFollow(id));
+      }
+      dispatch(setisProgress(false, id));
+    });
+  };
+};
+export const userUnfollowThunk = (id) => {
+  return (dispatch) => {
+    dispatch(setisProgress(true, id));
+    getUnfollow(id).then((res) => {
+      if (res.data.resultCode === 0) {
+        dispatch(userUnfollow(id));
+      }
+      dispatch(setisProgress(false, id));
+    });
+  };
 };
 
 export default friendReducer;

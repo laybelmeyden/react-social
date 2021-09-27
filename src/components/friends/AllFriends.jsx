@@ -1,6 +1,6 @@
 import React from "react";
 import "./../../App.scss";
-import scssFriends from "./../../css_modules/Friends.module.scss";
+import scssFriends from "./Friends.module.scss";
 import FriendItem from "./FriendItem";
 import axios from 'axios';
 
